@@ -228,7 +228,7 @@ export default function DashboardPage() {
                 placeholder="Search tasks…"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="input-field pl-9 py-2 w-[16rem] sm:w-64 text-sm"
+                className="input-field pl-9 py-2 w-[14rem] sm:w-64 text-sm"
               />
             </div>
             <button onClick={openCreate} className="btn-primary flex items-center gap-1.5 whitespace-nowrap">

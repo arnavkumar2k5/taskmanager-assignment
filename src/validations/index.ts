@@ -2,19 +2,19 @@ import { z } from 'zod';
 
 export const registerSchema = z.object({
   name: z
-    .string({ required_error: 'Name is required' })
+    .string()
     .min(2, 'Name must be at least 2 characters')
     .max(255, 'Name must be under 255 characters')
     .trim(),
 
   email: z
-    .string({ required_error: 'Email is required' })
+    .string()
     .email('Invalid email address')
     .toLowerCase()
     .trim(),
 
   password: z
-    .string({ required_error: 'Password is required' })
+    .string()
     .min(8, 'Password must be at least 8 characters')
     .max(100, 'Password must be under 100 characters')
     .regex(
@@ -25,19 +25,19 @@ export const registerSchema = z.object({
 
 export const loginSchema = z.object({
   email: z
-    .string({ required_error: 'Email is required' })
+    .string()
     .email('Invalid email address')
     .toLowerCase()
     .trim(),
 
   password: z
-    .string({ required_error: 'Password is required' })
+    .string()
     .min(1, 'Password is required'),
 });
 
 export const createTaskSchema = z.object({
   title: z
-    .string({ required_error: 'Title is required' })
+    .string()
     .min(1, 'Title cannot be empty')
     .max(255, 'Title must be under 255 characters')
     .trim(),
@@ -49,9 +49,7 @@ export const createTaskSchema = z.object({
     .default(''),
 
   status: z
-    .enum(['PENDING', 'IN_PROGRESS', 'COMPLETED'], {
-      errorMap: () => ({ message: 'Status must be PENDING, IN_PROGRESS, or COMPLETED' }),
-    })
+    .enum(['PENDING', 'IN_PROGRESS', 'COMPLETED'])
     .optional()
     .default('PENDING'),
 });
@@ -70,9 +68,7 @@ export const updateTaskSchema = z.object({
     .optional(),
 
   status: z
-    .enum(['PENDING', 'IN_PROGRESS', 'COMPLETED'], {
-      errorMap: () => ({ message: 'Status must be PENDING, IN_PROGRESS, or COMPLETED' }),
-    })
+    .enum(['PENDING', 'IN_PROGRESS', 'COMPLETED'])
     .optional(),
 });
 
